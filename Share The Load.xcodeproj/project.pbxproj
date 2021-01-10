@@ -19,6 +19,9 @@
 		2393F6EF25ABA5FC002D56A2 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 2393F6EE25ABA5FC002D56A2 /* FirebaseCrashlytics */; };
 		2393F6F125ABA5FC002D56A2 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 2393F6F025ABA5FC002D56A2 /* FirebaseDatabase */; };
 		2393F6FA25ABAA39002D56A2 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 2393F6F925ABAA39002D56A2 /* Realm */; };
+		2393F6FF25ABB2A7002D56A2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2393F6FE25ABB2A7002D56A2 /* GoogleService-Info.plist */; };
+		2393F70025ABB2A7002D56A2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2393F6FE25ABB2A7002D56A2 /* GoogleService-Info.plist */; };
+		2393F70125ABB2A7002D56A2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2393F6FE25ABB2A7002D56A2 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +56,7 @@
 		2393F6D625AB9F3E002D56A2 /* Share The LoadUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Share The LoadUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2393F6DA25AB9F3E002D56A2 /* Share_The_LoadUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Share_The_LoadUITests.swift; sourceTree = "<group>"; };
 		2393F6DC25AB9F3E002D56A2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2393F6FE25ABB2A7002D56A2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +118,7 @@
 				2393F6C125AB9F3E002D56A2 /* Assets.xcassets */,
 				2393F6C325AB9F3E002D56A2 /* LaunchScreen.storyboard */,
 				2393F6C625AB9F3E002D56A2 /* Info.plist */,
+				2393F6FE25ABB2A7002D56A2 /* GoogleService-Info.plist */,
 			);
 			path = "Share The Load";
 			sourceTree = "<group>";
@@ -250,6 +255,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2393F6C525AB9F3E002D56A2 /* LaunchScreen.storyboard in Resources */,
+				2393F6FF25ABB2A7002D56A2 /* GoogleService-Info.plist in Resources */,
 				2393F6C225AB9F3E002D56A2 /* Assets.xcassets in Resources */,
 				2393F6C025AB9F3C002D56A2 /* Main.storyboard in Resources */,
 			);
@@ -259,6 +265,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2393F70025ABB2A7002D56A2 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -266,6 +273,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2393F70125ABB2A7002D56A2 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
