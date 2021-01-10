@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -15,6 +15,10 @@
 		2393F6C525AB9F3E002D56A2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2393F6C325AB9F3E002D56A2 /* LaunchScreen.storyboard */; };
 		2393F6D025AB9F3E002D56A2 /* Share_The_LoadTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2393F6CF25AB9F3E002D56A2 /* Share_The_LoadTests.swift */; };
 		2393F6DB25AB9F3E002D56A2 /* Share_The_LoadUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2393F6DA25AB9F3E002D56A2 /* Share_The_LoadUITests.swift */; };
+		2393F6ED25ABA5FC002D56A2 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 2393F6EC25ABA5FC002D56A2 /* FirebaseAnalytics */; };
+		2393F6EF25ABA5FC002D56A2 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 2393F6EE25ABA5FC002D56A2 /* FirebaseCrashlytics */; };
+		2393F6F125ABA5FC002D56A2 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 2393F6F025ABA5FC002D56A2 /* FirebaseDatabase */; };
+		2393F6FA25ABAA39002D56A2 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 2393F6F925ABAA39002D56A2 /* Realm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +60,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2393F6F125ABA5FC002D56A2 /* FirebaseDatabase in Frameworks */,
+				2393F6ED25ABA5FC002D56A2 /* FirebaseAnalytics in Frameworks */,
+				2393F6FA25ABAA39002D56A2 /* Realm in Frameworks */,
+				2393F6EF25ABA5FC002D56A2 /* FirebaseCrashlytics in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -144,6 +152,12 @@
 			dependencies = (
 			);
 			name = "Share The Load";
+			packageProductDependencies = (
+				2393F6EC25ABA5FC002D56A2 /* FirebaseAnalytics */,
+				2393F6EE25ABA5FC002D56A2 /* FirebaseCrashlytics */,
+				2393F6F025ABA5FC002D56A2 /* FirebaseDatabase */,
+				2393F6F925ABAA39002D56A2 /* Realm */,
+			);
 			productName = "Share The Load";
 			productReference = 2393F6B525AB9F3C002D56A2 /* Share The Load.app */;
 			productType = "com.apple.product-type.application";
@@ -215,6 +229,10 @@
 				Base,
 			);
 			mainGroup = 2393F6AC25AB9F3C002D56A2;
+			packageReferences = (
+				2393F6EB25ABA5FC002D56A2 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				2393F6F825ABAA39002D56A2 /* XCRemoteSwiftPackageReference "realm-cocoa" */,
+			);
 			productRefGroup = 2393F6B625AB9F3C002D56A2 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -370,6 +388,7 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-ObjC";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -424,6 +443,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				OTHER_LDFLAGS = "-ObjC";
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
@@ -439,6 +459,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = R3ZLU447Q3;
 				INFOPLIST_FILE = "Share The Load/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -446,7 +467,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.chrishefferman.Share-The-Load";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -458,6 +479,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = R3ZLU447Q3;
 				INFOPLIST_FILE = "Share The Load/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -465,7 +487,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.chrishefferman.Share-The-Load";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -593,6 +615,48 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		2393F6EB25ABA5FC002D56A2 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.3.1;
+			};
+		};
+		2393F6F825ABAA39002D56A2 /* XCRemoteSwiftPackageReference "realm-cocoa" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-cocoa.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.5.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		2393F6EC25ABA5FC002D56A2 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2393F6EB25ABA5FC002D56A2 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		2393F6EE25ABA5FC002D56A2 /* FirebaseCrashlytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2393F6EB25ABA5FC002D56A2 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCrashlytics;
+		};
+		2393F6F025ABA5FC002D56A2 /* FirebaseDatabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2393F6EB25ABA5FC002D56A2 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseDatabase;
+		};
+		2393F6F925ABAA39002D56A2 /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2393F6F825ABAA39002D56A2 /* XCRemoteSwiftPackageReference "realm-cocoa" */;
+			productName = Realm;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 2393F6AD25AB9F3C002D56A2 /* Project object */;
 }
