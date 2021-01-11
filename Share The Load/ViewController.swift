@@ -18,7 +18,7 @@ class ViewController: UIViewController {
     
     private func troll() {
         view.addSubview(label)
-        label.text = "Hello Dumbledore"
+        label.text = "Hello Gandalf"
         label.textAlignment = .center
         label.frame = view.frame
     }
