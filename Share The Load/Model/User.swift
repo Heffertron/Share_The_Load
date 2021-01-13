@@ -7,6 +7,6 @@
 
 import Foundation
 
-struct User: Codable {
-    var answeredQuestions: [Int]
+struct User {
+    private(set) var answeredQuestions: [Int]
 }

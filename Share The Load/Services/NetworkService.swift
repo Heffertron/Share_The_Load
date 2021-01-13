@@ -21,7 +21,7 @@ class NetworkService: NetworkServiceType {
         ref.observeSingleEvent(of: .value, with: { (snapshot) in
         
             do {
-                let value = snapshot.value
+                let value = snapshot.value as Any
             
                 let jsonData = try JSONSerialization.data(withJSONObject: value as Any, options: .prettyPrinted)
                 let questions = try JSONDecoder().decode([Question].self, from: jsonData)
@@ -30,12 +30,10 @@ class NetworkService: NetworkServiceType {
             } catch {
                 print(error.localizedDescription)
                 completion(.failure(error))
-            
             }
         }) { (error) in
             print(error.localizedDescription)
             completion(.failure(error))
-            
         }
     }
 }

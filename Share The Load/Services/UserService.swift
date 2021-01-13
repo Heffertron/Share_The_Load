@@ -8,10 +8,12 @@
 import Foundation
 
 protocol UserServiceType {
-    var answeredIds: [Int] { get set }
+    func fetchAnswerIds(completion: @escaping (Result<[Int], Error>) -> ())
 }
 
 
 class UserService: UserServiceType {
-    var answeredIds: [Int] = []
+    func fetchAnswerIds(completion: @escaping (Result<[Int], Error>) -> ()) {
+        
+    }
 }

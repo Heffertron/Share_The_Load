@@ -8,14 +8,20 @@
 import Foundation
 
 protocol PersistanceServiceType {
+    var answeredIds: [Int] { get }
+    func save(id: [Int])
     func save(quiz: Quiz)
     func getQuiz() -> Quiz
-    func save(id: [Int])
-    var answeredIds: [Int] { get set }
 }
 
 
 class PersistanceService: PersistanceServiceType {
+    var answeredIds: [Int] = []
+    
+    func save(id: [Int]) {
+        
+    }
+    
     func save(quiz: Quiz) {
         
     }
@@ -24,13 +30,5 @@ class PersistanceService: PersistanceServiceType {
         let quiz = Quiz()
 
         return quiz
-    }
-    
-    func save(id: [Int]) {
-        
-    }
-    
-    var answeredIds: [Int] = []
-    
-    
+    }    
 }
