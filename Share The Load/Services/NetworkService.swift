@@ -15,8 +15,8 @@ protocol NetworkServiceType {
 
 class NetworkService: NetworkServiceType {
     func fetchQuiz(completion: @escaping (Result<[Question], Error>) -> ()) {
-        
         var ref: DatabaseReference!
+        
         ref = Database.database().reference()
         ref.observeSingleEvent(of: .value, with: { (snapshot) in
         

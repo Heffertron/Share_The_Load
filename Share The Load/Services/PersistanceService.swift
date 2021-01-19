@@ -6,29 +6,39 @@
 //
 
 import Foundation
+import RealmSwift
 
 protocol PersistanceServiceType {
     var answeredIds: [Int] { get }
     func save(id: [Int])
-    func save(quiz: Quiz)
-    func getQuiz() -> Quiz
+    func save(questions: [Question])
+    func getQuestions() -> [Question]
 }
 
 
 class PersistanceService: PersistanceServiceType {
+    
     var answeredIds: [Int] = []
+    
     
     func save(id: [Int]) {
         
     }
     
-    func save(quiz: Quiz) {
+    
+    func save(questions: [Question]) {
+        let realm = try! Realm()
         
+        try! realm.write {
+            realm.add(questions)
+        }
     }
     
-    func getQuiz() -> Quiz {
-        let quiz = Quiz()
-
-        return quiz
-    }    
+    
+    func getQuestions() -> [Question] {
+        let realm = try! Realm()
+        let realmQuestions = realm.objects(Question.self)
+        let questionsFromRealm = Array(realmQuestions)
+        return questionsFromRealm
+    }
 }
