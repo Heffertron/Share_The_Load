@@ -10,22 +10,30 @@ import RealmSwift
 
 protocol PersistanceServiceType {
     var answeredIds: [Int] { get }
-    func save(id: [Int])
+    func save(ids: [Int])
     func save(questions: [Question])
     func getQuestions() -> [Question]
 }
 
+/// Massive temporary hack to get save logic working
+/// We'll need a UserService to always give us the same instance of a user rather than this global properties
+/// Global properties are very bad.
+var user = User()
 
 class PersistanceService: PersistanceServiceType {
     
     var answeredIds: [Int] = []
     
     
-    func save(id: [Int]) {
+    func save(ids: [Int]) {
         let realm = try! Realm()
         
+        for id in ids {
+            user.appendAnsweredQuestion(id: id)
+        }
+        
         try! realm.write {
-            realm.add(id)
+            realm.add(user)
         }
     }
     
