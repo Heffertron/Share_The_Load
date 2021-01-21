@@ -6,7 +6,8 @@
 //
 
 import Foundation
+import RealmSwift
 
-struct User {
-    private(set) var answeredQuestions: [Int]
+final class User {
+    private(set) var answeredQuestions: [Int] = []
 }

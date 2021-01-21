@@ -22,23 +22,38 @@ class PersistanceService: PersistanceServiceType {
     
     
     func save(id: [Int]) {
+        let realm = try! Realm()
         
+        try! realm.write {
+            realm.add(id)
+        }
     }
     
     
     func save(questions: [Question]) {
-        let realm = try! Realm()
-        
-        try! realm.write {
-            realm.add(questions)
+        do {
+            let realm = try Realm()
+            try realm.write {
+                realm.add(questions)
+            }
+        } catch {
+            print("Error: \(error)")
         }
     }
     
     
     func getQuestions() -> [Question] {
-        let realm = try! Realm()
-        let realmQuestions = realm.objects(Question.self)
-        let questionsFromRealm = Array(realmQuestions)
+        var questionsFromRealm = [Question()]
+        
+        do {
+            let realm = try Realm()
+            let realmQuestions = realm.objects(Question.self)
+            questionsFromRealm = Array(realmQuestions)
+            
+        } catch {
+            print("Error: \(error)")
+        }
+        
         return questionsFromRealm
     }
 }
