@@ -8,6 +8,19 @@
 import Foundation
 import RealmSwift
 
-final class User {
-    private(set) var answeredQuestions: [Int] = []
+final class User: Object {
+    private(set) var answeredQuestions = List<Int>()
+    
+    func appendAnsweredQuestion(id: Int) {
+        guard !answeredQuestions.contains(id) else { return }
+        answeredQuestions.append(id)
+    }
+    
+    func removeAnsweredQuestion(id: Int) {
+        
+    }
+    
+    func resetAnsweredQuestions() {
+        
+    }
 }
