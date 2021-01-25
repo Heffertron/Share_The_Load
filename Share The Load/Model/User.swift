@@ -16,11 +16,14 @@ final class User: Object {
         answeredQuestions.append(id)
     }
     
+    
     func removeAnsweredQuestion(id: Int) {
-        
+        guard !answeredQuestions.contains(id) else { return }
+        answeredQuestions.remove(at: id)
     }
     
+    
     func resetAnsweredQuestions() {
-        
+        answeredQuestions.removeAll()
     }
 }

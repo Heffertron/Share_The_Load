@@ -24,16 +24,18 @@ class PersistanceService: PersistanceServiceType {
     
     var answeredIds: [Int] = []
     
-    
     func save(ids: [Int]) {
-        let realm = try! Realm()
-        
         for id in ids {
             user.appendAnsweredQuestion(id: id)
         }
         
-        try! realm.write {
-            realm.add(user)
+        do {
+            let realm = try Realm()
+            try realm.write {
+                realm.add(user)
+            }
+        } catch {
+            print("Error: \(error)")
         }
     }
     
