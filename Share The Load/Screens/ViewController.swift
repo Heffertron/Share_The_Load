@@ -11,30 +11,49 @@ import RealmSwift
 
 class ViewController: UIViewController {
     
-    private let button = UIButton()
+    private let getRealmQuestionsButton = UIButton()
+    private let removeFromRealmButton = UIButton()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchQuiz()
-        createButton()
+        createGetRealmQuestionsButton()
+        createRemoveButton()
     }
     
     
-    private func createButton() {
-        view.addSubview(button)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Get Questions", for: .normal)
-        button.frame = view.frame
-        button.backgroundColor = .systemBlue
-        button.layer.cornerRadius = 20
-        button.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
+    private func createGetRealmQuestionsButton() {
+        view.addSubview(getRealmQuestionsButton)
+        getRealmQuestionsButton.translatesAutoresizingMaskIntoConstraints = false
+        getRealmQuestionsButton.setTitle("Get Questions From Realm", for: .normal)
+        getRealmQuestionsButton.frame = view.frame
+        getRealmQuestionsButton.backgroundColor = .systemBlue
+        getRealmQuestionsButton.layer.cornerRadius = 20
+        getRealmQuestionsButton.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
         
         NSLayoutConstraint.activate([
-            button.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            button.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            button.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            button.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            button.heightAnchor.constraint(equalToConstant: 50)
+            getRealmQuestionsButton.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            getRealmQuestionsButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            getRealmQuestionsButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            getRealmQuestionsButton.heightAnchor.constraint(equalToConstant: 50)
+        ])
+    }
+    
+    
+    private func createRemoveButton() {
+        view.addSubview(removeFromRealmButton)
+        removeFromRealmButton.translatesAutoresizingMaskIntoConstraints = false
+        removeFromRealmButton.setTitle("Remove Question", for: .normal)
+        removeFromRealmButton.frame = view.frame
+        removeFromRealmButton.backgroundColor = .systemRed
+        removeFromRealmButton.layer.cornerRadius = 20
+        removeFromRealmButton.addTarget(self, action: #selector(removeButtonTapped), for: .touchUpInside)
+        
+        NSLayoutConstraint.activate([
+            removeFromRealmButton.topAnchor.constraint(equalTo: getRealmQuestionsButton.bottomAnchor, constant: 20),
+            removeFromRealmButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            removeFromRealmButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            removeFromRealmButton.heightAnchor.constraint(equalToConstant: 50)
         ])
     }
     
@@ -49,6 +68,19 @@ class ViewController: UIViewController {
     }
     
     
+    @objc func removeButtonTapped() {
+        let persistanceService = PersistanceService()
+        let questionsFromRealm = persistanceService.getQuestions()
+        
+        print("Questions from Realm before removal: \(questionsFromRealm[0])")
+        
+        let user = User()
+        user.removeAnsweredQuestion(questionAnswered: questionsFromRealm[0])
+        
+        print("Questions from Realm after removal: \(questionsFromRealm.count)")
+    }
+    
+    
     private func fetchQuiz() {
         let persistanceService = PersistanceService()
         if persistanceService.getQuestions().isEmpty {
@@ -59,7 +91,6 @@ class ViewController: UIViewController {
             networkService.fetchQuiz() { result in
                 switch result {
                 case .success(let allQuestions):
-                    print("Success")
                     persistanceService.save(questions: allQuestions)
                     
                 case .failure(let error):

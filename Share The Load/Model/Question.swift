@@ -17,17 +17,6 @@ final class Question: Object, Codable {
     var answers = List<Answer>()
     
     var correctAnswer: Answer {
-        var correctAnswer = Answer()
-
-        for answer in answers {
-            if answer.id == 1 {
-                correctAnswer = answer
-            }
-        }
-        return correctAnswer
+        answers.first { $0.id == 1 }!
     }
-    
-//    var correctAnswer: Answer {
-//        answers.first { $0.id == 1 }!
-//    }
 }

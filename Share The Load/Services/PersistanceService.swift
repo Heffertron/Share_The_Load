@@ -46,6 +46,7 @@ class PersistanceService: PersistanceServiceType {
             try realm.write {
                 realm.add(questions)
             }
+            print("Saved to Realm")
         } catch {
             print("Error: \(error)")
         }
