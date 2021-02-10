@@ -11,25 +11,33 @@ import RealmSwift
 
 class ViewController: UIViewController {
     
-    private let getRealmQuestionsButton = UIButton()
-    private let removeFromRealmButton = UIButton()
+    private var getRealmQuestionsButton = UIButton()
+    private var removeFromRealmButton = UIButton()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchQuiz()
+    }
+    
+    override func loadView() {
+        createView()
         createGetRealmQuestionsButton()
         createRemoveButton()
     }
     
+    private func createView() {
+        view = UIView()
+        view.backgroundColor = .white
+    }
     
     private func createGetRealmQuestionsButton() {
-        view.addSubview(getRealmQuestionsButton)
+        getRealmQuestionsButton = UIButton()
         getRealmQuestionsButton.translatesAutoresizingMaskIntoConstraints = false
         getRealmQuestionsButton.setTitle("Get Questions From Realm", for: .normal)
-        getRealmQuestionsButton.frame = view.frame
         getRealmQuestionsButton.backgroundColor = .systemBlue
         getRealmQuestionsButton.layer.cornerRadius = 20
-        getRealmQuestionsButton.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
+        getRealmQuestionsButton.addTarget(self, action: #selector(getRealmQuestionsButtonTapped), for: .touchUpInside)
+        view.addSubview(getRealmQuestionsButton)
         
         NSLayoutConstraint.activate([
             getRealmQuestionsButton.centerYAnchor.constraint(equalTo: view.centerYAnchor),
@@ -39,15 +47,14 @@ class ViewController: UIViewController {
         ])
     }
     
-    
     private func createRemoveButton() {
-        view.addSubview(removeFromRealmButton)
+        removeFromRealmButton = UIButton()
         removeFromRealmButton.translatesAutoresizingMaskIntoConstraints = false
         removeFromRealmButton.setTitle("Remove Question", for: .normal)
-        removeFromRealmButton.frame = view.frame
         removeFromRealmButton.backgroundColor = .systemRed
         removeFromRealmButton.layer.cornerRadius = 20
         removeFromRealmButton.addTarget(self, action: #selector(removeButtonTapped), for: .touchUpInside)
+        view.addSubview(removeFromRealmButton)
         
         NSLayoutConstraint.activate([
             removeFromRealmButton.topAnchor.constraint(equalTo: getRealmQuestionsButton.bottomAnchor, constant: 20),
@@ -57,9 +64,8 @@ class ViewController: UIViewController {
         ])
     }
     
-    
-    @objc func buttonTapped() {
-        let persistanceService = PersistanceService()
+    @objc private func getRealmQuestionsButtonTapped() {
+        let persistanceService = PersistenceService()
         let questionsFromRealm = persistanceService.getQuestions()
         
         for question in questionsFromRealm {
@@ -67,22 +73,13 @@ class ViewController: UIViewController {
         }
     }
     
-    
-    @objc func removeButtonTapped() {
-        let persistanceService = PersistanceService()
-        let questionsFromRealm = persistanceService.getQuestions()
-        
-        print("Questions from Realm before removal: \(questionsFromRealm[0])")
-        
-        let user = User()
-        user.removeAnsweredQuestion(questionAnswered: questionsFromRealm[0])
-        
-        print("Questions from Realm after removal: \(questionsFromRealm.count)")
+    @objc private func removeButtonTapped() {
+        print("Does nothing - need to update User object first. ")
+        ///Need to add logic here once User object is updated to include valid implementation of removeAnsweredQuestionID.
     }
     
-    
     private func fetchQuiz() {
-        let persistanceService = PersistanceService()
+        let persistanceService = PersistenceService()
         if persistanceService.getQuestions().isEmpty {
             
             /// This is temporary for now as it was pulling the questions from Firebase every time and therefore doubling each time the app was launched
@@ -100,3 +97,4 @@ class ViewController: UIViewController {
         }
     }
 }
+

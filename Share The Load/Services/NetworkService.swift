@@ -12,7 +12,6 @@ protocol NetworkServiceType {
     func fetchQuiz(completion: @escaping (Result<[Question], Error>) -> ())
 }
 
-
 class NetworkService: NetworkServiceType {
     func fetchQuiz(completion: @escaping (Result<[Question], Error>) -> ()) {
         var ref: DatabaseReference!

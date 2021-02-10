@@ -8,7 +8,7 @@
 import Foundation
 import RealmSwift
 
-protocol PersistanceServiceType {
+protocol PersistenceServiceType {
     var answeredIds: [Int] { get }
     func save(ids: [Int])
     func save(questions: [Question])
@@ -20,7 +20,7 @@ protocol PersistanceServiceType {
 /// Global properties are very bad.
 var user = User()
 
-class PersistanceService: PersistanceServiceType {
+class PersistenceService: PersistenceServiceType {
     
     var answeredIds: [Int] = []
     
@@ -39,7 +39,6 @@ class PersistanceService: PersistanceServiceType {
         }
     }
     
-    
     func save(questions: [Question]) {
         do {
             let realm = try Realm()
@@ -52,9 +51,8 @@ class PersistanceService: PersistanceServiceType {
         }
     }
     
-    
     func getQuestions() -> [Question] {
-        var questionsFromRealm = [Question()]
+        var questionsFromRealm: [Question] = []
         
         do {
             let realm = try Realm()

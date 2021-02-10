@@ -7,6 +7,6 @@
 
 import Foundation
 
-final class Quiz: Codable {
+final class Quiz {
     
 }
