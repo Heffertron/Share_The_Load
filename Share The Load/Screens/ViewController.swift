@@ -11,57 +11,59 @@ import RealmSwift
 
 class ViewController: UIViewController {
     
-    private var getRealmQuestionsButton = UIButton()
-    private var removeFromRealmButton = UIButton()
+    private var getRealmQuestionsButton: UIButton = {
+        let getRealmQuestionsButton = UIButton()
+        getRealmQuestionsButton.setTitle("Get Questions From Realm", for: .normal)
+        getRealmQuestionsButton.backgroundColor = .systemBlue
+        getRealmQuestionsButton.addTarget(self, action: #selector(getRealmQuestionsButtonTapped), for: .touchUpInside)
+        return getRealmQuestionsButton
+    }()
+
+    private var removeFromRealmButton: UIButton = {
+        let removeFromRealmButton = UIButton()
+        removeFromRealmButton.setTitle("Remove Question", for: .normal)
+        removeFromRealmButton.backgroundColor = .systemRed
+        removeFromRealmButton.addTarget(self, action: #selector(removeButtonTapped), for: .touchUpInside)
+        return removeFromRealmButton
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchQuiz()
     }
     
+    
     override func loadView() {
-        createView()
-        createGetRealmQuestionsButton()
-        createRemoveButton()
-    }
-    
-    private func createView() {
-        view = UIView()
-        view.backgroundColor = .white
-    }
-    
-    private func createGetRealmQuestionsButton() {
-        getRealmQuestionsButton = UIButton()
-        getRealmQuestionsButton.translatesAutoresizingMaskIntoConstraints = false
-        getRealmQuestionsButton.setTitle("Get Questions From Realm", for: .normal)
-        getRealmQuestionsButton.backgroundColor = .systemBlue
-        getRealmQuestionsButton.layer.cornerRadius = 20
-        getRealmQuestionsButton.addTarget(self, action: #selector(getRealmQuestionsButtonTapped), for: .touchUpInside)
+        let view = UIView()
         view.addSubview(getRealmQuestionsButton)
+        view.addSubview(removeFromRealmButton)
+        view.backgroundColor = .white
+        
+        let buttonHeight: CGFloat = 50
+        let buttonPadding: CGFloat = 20
+        
+        getRealmQuestionsButton.translatesAutoresizingMaskIntoConstraints = false
+        removeFromRealmButton.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             getRealmQuestionsButton.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            getRealmQuestionsButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            getRealmQuestionsButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            getRealmQuestionsButton.heightAnchor.constraint(equalToConstant: 50)
+            getRealmQuestionsButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: buttonPadding),
+            getRealmQuestionsButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -buttonPadding),
+            getRealmQuestionsButton.heightAnchor.constraint(equalToConstant: buttonHeight),
+            
+            removeFromRealmButton.topAnchor.constraint(equalTo: getRealmQuestionsButton.bottomAnchor, constant: buttonPadding),
+            removeFromRealmButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: buttonPadding),
+            removeFromRealmButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -buttonPadding),
+            removeFromRealmButton.heightAnchor.constraint(equalToConstant: buttonHeight)
         ])
+        
+        self.view = view
     }
     
-    private func createRemoveButton() {
-        removeFromRealmButton = UIButton()
-        removeFromRealmButton.translatesAutoresizingMaskIntoConstraints = false
-        removeFromRealmButton.setTitle("Remove Question", for: .normal)
-        removeFromRealmButton.backgroundColor = .systemRed
-        removeFromRealmButton.layer.cornerRadius = 20
-        removeFromRealmButton.addTarget(self, action: #selector(removeButtonTapped), for: .touchUpInside)
-        view.addSubview(removeFromRealmButton)
-        
-        NSLayoutConstraint.activate([
-            removeFromRealmButton.topAnchor.constraint(equalTo: getRealmQuestionsButton.bottomAnchor, constant: 20),
-            removeFromRealmButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            removeFromRealmButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            removeFromRealmButton.heightAnchor.constraint(equalToConstant: 50)
-        ])
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        getRealmQuestionsButton.layer.cornerRadius = getRealmQuestionsButton.bounds.height / 2
+        removeFromRealmButton.layer.cornerRadius = removeFromRealmButton.bounds.height / 2
     }
     
     @objc private func getRealmQuestionsButtonTapped() {
