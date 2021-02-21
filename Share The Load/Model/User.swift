@@ -9,21 +9,19 @@ import Foundation
 import RealmSwift
 
 final class User: Object {
-    private(set) var answeredQuestions = List<Int>()
+    private(set) var answeredQuestionIds = List<Int>()
     
     func appendAnsweredQuestion(id: Int) {
-        guard !answeredQuestions.contains(id) else { return }
-        answeredQuestions.append(id)
+        guard !answeredQuestionIds.contains(id) else { return }
+        answeredQuestionIds.append(id)
     }
     
-    func removeAnsweredQuestion(questionAnswered: Int) {
-//        questionAnswered.id
-//
-//        guard !answeredQuestions.contains(id) else { return }
-//        answeredQuestions.remove(at: questionAnswered.id)
+    func removeAnsweredQuestion(questionAnsweredId: Int) {
+        guard !answeredQuestionIds.contains(questionAnsweredId) else { return }
+        answeredQuestionIds.remove(at: questionAnsweredId)
     }
     
     func resetAnsweredQuestions() {
-        answeredQuestions.removeAll()
+        answeredQuestionIds.removeAll()
     }
 }

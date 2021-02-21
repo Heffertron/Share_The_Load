@@ -16,7 +16,7 @@ final class Question: Object, Codable {
     @objc dynamic var correctAnswerId: Int = 0
     var answers = List<Answer>()
     
-    var correctAnswer: Answer {
-        answers.first { $0.id == 1 }!
+    var correctAnswer: Answer? {
+        answers.first { $0.id == 1 }
     }
 }

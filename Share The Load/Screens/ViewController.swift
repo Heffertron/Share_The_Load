@@ -71,7 +71,11 @@ class ViewController: UIViewController {
         let questionsFromRealm = persistanceService.getQuestions()
         
         for question in questionsFromRealm {
-            print("Question: \(question.title) || Answer: \(question.correctAnswer)")
+            if let answerExists = question.correctAnswer {
+                print("Question: \(question.title) || Answer: \(answerExists)")
+            } else {
+                print("Question: \(question.title) || Answer: No correct answer exists in database")
+            }
         }
     }
     
