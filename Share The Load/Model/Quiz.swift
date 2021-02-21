@@ -8,5 +8,5 @@
 import Foundation
 
 final class Quiz {
-    
+    var helloThere = "Hello There!"
 }
