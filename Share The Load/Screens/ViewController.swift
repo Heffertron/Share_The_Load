@@ -11,20 +11,20 @@ import RealmSwift
 
 class ViewController: UIViewController {
     
-    private var getRealmQuestionsButton: UIButton = {
-        let getRealmQuestionsButton = UIButton()
-        getRealmQuestionsButton.setTitle("Get Questions From Realm", for: .normal)
-        getRealmQuestionsButton.backgroundColor = .systemBlue
-        getRealmQuestionsButton.addTarget(self, action: #selector(getRealmQuestionsButtonTapped), for: .touchUpInside)
-        return getRealmQuestionsButton
+    private var accessQuestionsFromDatabaseButton: UIButton = {
+        let accessQuestionsFromDatabaseButton = UIButton()
+        accessQuestionsFromDatabaseButton.setTitle("Access Questions from Database", for: .normal)
+        accessQuestionsFromDatabaseButton.backgroundColor = .systemBlue
+        accessQuestionsFromDatabaseButton.addTarget(self, action: #selector(accessQuestionsFromDatabaseButtonTapped), for: .touchUpInside)
+        return accessQuestionsFromDatabaseButton
     }()
 
-    private var removeFromRealmButton: UIButton = {
-        let removeFromRealmButton = UIButton()
-        removeFromRealmButton.setTitle("Remove Question", for: .normal)
-        removeFromRealmButton.backgroundColor = .systemRed
-        removeFromRealmButton.addTarget(self, action: #selector(removeButtonTapped), for: .touchUpInside)
-        return removeFromRealmButton
+    private var removeQuestionsFromDatabaseButton: UIButton = {
+        let removeQuestionsFromDatabaseButton = UIButton()
+        removeQuestionsFromDatabaseButton.setTitle("Remove Question from Database", for: .normal)
+        removeQuestionsFromDatabaseButton.backgroundColor = .systemRed
+        removeQuestionsFromDatabaseButton.addTarget(self, action: #selector(removeQuestionsFromDatabaseButtonTapped), for: .touchUpInside)
+        return removeQuestionsFromDatabaseButton
     }()
 
     override func viewDidLoad() {
@@ -35,26 +35,26 @@ class ViewController: UIViewController {
     
     override func loadView() {
         let view = UIView()
-        view.addSubview(getRealmQuestionsButton)
-        view.addSubview(removeFromRealmButton)
+        view.addSubview(accessQuestionsFromDatabaseButton)
+        view.addSubview(removeQuestionsFromDatabaseButton)
         view.backgroundColor = .white
         
         let buttonHeight: CGFloat = 50
         let buttonPadding: CGFloat = 20
         
-        getRealmQuestionsButton.translatesAutoresizingMaskIntoConstraints = false
-        removeFromRealmButton.translatesAutoresizingMaskIntoConstraints = false
+        accessQuestionsFromDatabaseButton.translatesAutoresizingMaskIntoConstraints = false
+        removeQuestionsFromDatabaseButton.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            getRealmQuestionsButton.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            getRealmQuestionsButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: buttonPadding),
-            getRealmQuestionsButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -buttonPadding),
-            getRealmQuestionsButton.heightAnchor.constraint(equalToConstant: buttonHeight),
+            accessQuestionsFromDatabaseButton.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            accessQuestionsFromDatabaseButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: buttonPadding),
+            accessQuestionsFromDatabaseButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -buttonPadding),
+            accessQuestionsFromDatabaseButton.heightAnchor.constraint(equalToConstant: buttonHeight),
             
-            removeFromRealmButton.topAnchor.constraint(equalTo: getRealmQuestionsButton.bottomAnchor, constant: buttonPadding),
-            removeFromRealmButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: buttonPadding),
-            removeFromRealmButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -buttonPadding),
-            removeFromRealmButton.heightAnchor.constraint(equalToConstant: buttonHeight)
+            removeQuestionsFromDatabaseButton.topAnchor.constraint(equalTo: accessQuestionsFromDatabaseButton.bottomAnchor, constant: buttonPadding),
+            removeQuestionsFromDatabaseButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: buttonPadding),
+            removeQuestionsFromDatabaseButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -buttonPadding),
+            removeQuestionsFromDatabaseButton.heightAnchor.constraint(equalToConstant: buttonHeight)
         ])
         
         self.view = view
@@ -62,11 +62,11 @@ class ViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        getRealmQuestionsButton.layer.cornerRadius = getRealmQuestionsButton.bounds.height / 2
-        removeFromRealmButton.layer.cornerRadius = removeFromRealmButton.bounds.height / 2
+        accessQuestionsFromDatabaseButton.layer.cornerRadius = accessQuestionsFromDatabaseButton.bounds.height / 2
+        removeQuestionsFromDatabaseButton.layer.cornerRadius = removeQuestionsFromDatabaseButton.bounds.height / 2
     }
     
-    @objc private func getRealmQuestionsButtonTapped() {
+    @objc private func accessQuestionsFromDatabaseButtonTapped() {
         let persistanceService = PersistenceService()
         let questionsFromRealm = persistanceService.getQuestions()
         
@@ -79,7 +79,7 @@ class ViewController: UIViewController {
         }
     }
     
-    @objc private func removeButtonTapped() {
+    @objc private func removeQuestionsFromDatabaseButtonTapped() {
         print("Does nothing - need to update User object first. ")
         ///Need to add logic here once User object is updated to include valid implementation of removeAnsweredQuestionID.
     }
