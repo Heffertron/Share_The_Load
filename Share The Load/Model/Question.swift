@@ -6,12 +6,17 @@
 //
 
 import Foundation
+import RealmSwift
 
-struct Question: Codable {
-    let id: Int
-    let trilogy: String
-    let film: String
-    let title: String
-    let correctAnswerId: Int
-    let answers: [Answer]
+final class Question: Object, Codable {
+    @objc dynamic var id: Int = 0
+    @objc dynamic var trilogy: String = ""
+    @objc dynamic var film: String = ""
+    @objc dynamic var title: String = ""
+    @objc dynamic var correctAnswerId: Int = 0
+    var answers = List<Answer>()
+    
+    var correctAnswer: Answer? {
+        answers.first { $0.id == 1 }
+    }
 }

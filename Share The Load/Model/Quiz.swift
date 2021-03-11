@@ -7,6 +7,6 @@
 
 import Foundation
 
-struct Quiz: Codable {
+final class Quiz {
     
 }

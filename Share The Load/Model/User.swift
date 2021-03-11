@@ -6,7 +6,22 @@
 //
 
 import Foundation
+import RealmSwift
 
-struct User {
-    private(set) var answeredQuestions: [Int]
+final class User: Object {
+    private(set) var answeredQuestionIds = List<Int>()
+    
+    func appendAnsweredQuestion(id: Int) {
+        guard !answeredQuestionIds.contains(id) else { return }
+        answeredQuestionIds.append(id)
+    }
+    
+    func removeAnsweredQuestion(questionAnsweredId: Int) {
+        guard !answeredQuestionIds.contains(questionAnsweredId) else { return }
+        answeredQuestionIds.remove(at: questionAnsweredId)
+    }
+    
+    func resetAnsweredQuestions() {
+        answeredQuestionIds.removeAll()
+    }
 }

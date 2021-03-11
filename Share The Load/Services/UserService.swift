@@ -11,7 +11,6 @@ protocol UserServiceType {
     func fetchAnswerIds(completion: @escaping (Result<[Int], Error>) -> ())
 }
 
-
 class UserService: UserServiceType {
     func fetchAnswerIds(completion: @escaping (Result<[Int], Error>) -> ()) {
         

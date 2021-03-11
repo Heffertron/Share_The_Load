@@ -11,7 +11,6 @@ protocol QuizServiceType {
     func quiz(completion: @escaping(Result<Quiz, Error>) -> ())
 }
 
-
 class QuizService: QuizServiceType {
     func quiz(completion: @escaping (Result<Quiz, Error>) -> ()) {
         

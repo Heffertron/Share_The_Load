@@ -6,8 +6,9 @@
 //
 
 import Foundation
+import RealmSwift
 
-struct Answer: Codable {
-    let title: String
-    let id: Int
+final class Answer: Object, Codable {
+    @objc dynamic var title: String = ""
+    @objc dynamic var id: Int = 0
 }
